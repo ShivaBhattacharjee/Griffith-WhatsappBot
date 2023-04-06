@@ -5,7 +5,11 @@ const weather = require('weather-js');
 const mime = require('mime-types')
 const { MessageMedia } = require('whatsapp-web.js');
 const { Client, LocalAuth } = require('whatsapp-web.js');
-
+const { Configuration, OpenAIApi } = require("openai");
+require("dotenv").config()
+const configuration = new Configuration({
+    apiKey: process.env.KEY,
+});
 const client = new Client({
     authStrategy: new LocalAuth()
 });
@@ -17,13 +21,34 @@ client.on('qr', qr => {
 
 console.log('Client is ready!');
 client.on('message', async message => {
-    client.on('message', async (msg) => {
-        const mentions = await msg.getMentions();
-    });
-    
+
+    const openai = new OpenAIApi(configuration);
+    async function runCompletion(message) {
+        const completion = await openai.createCompletion({
+            model: "text-davinci-003",
+            prompt: message,
+            temperature: 0.5,
+            max_tokens: 60,
+            top_p: 0.3,
+            frequency_penalty: 0.5,
+            presence_penalty: 0,
+        });
+        return completion.data.choices[0].text;
+    }
+    const match = message.body.match(/^!ai\s+(.*)/);
+    if (match) {
+        const question = match[1];
+        runCompletion(question).then(result => message.reply(result));
+    } else {
+
+    }
+
+
+
     switch (message.body) {
         case '!help':
-            message.reply("Hi I am Griffith an open source whatsapp group management bot.\t \n\n\nSend any of the following commands to have a conversation with me \n\n\n *!help*:- Sends all  bot commands \n\n *!alive*:- Checks whether bot is alive or not \n\n *!sticker*:- Converts an image to sticker  \n\n *!meme* :- Sends a random meme sometimes dank meme \n\n *!info*:- To get connection information \n\n *!groupinfo*:- Sends group information (⚠️ command cannot be used in personal chat ) \n\n*!quote*:- Sends a cringy quote to help boost your morale \n\n *!source*:- Sends  Github repository link")
+        case '!hello':
+            message.reply("Hi, I am Griffith an open source whatsapp group management bot.\t \n\n\nSend any of the following commands to have a conversation with me \n\n\n *!help*:- Sends all  bot commands \n\n *!alive*:- Checks whether bot is alive or not \n\n *!sticker*:- Converts an image to sticker  \n\n *!meme* :- Sends a random meme from reddit \n\n *!info*:- To get connection information \n\n *!groupinfo*:- Sends group information (⚠️ command cannot be used in personal chat ) \n\n*!quote*:- Sends a cringy quote to help boost your morale\n\n *!ai*:- Sends ai generated response (eg:- !ai hello) \n\n *!source*:- Sends  Github repository link \n\n\n\n _Made with ❤️ by Shiva_")
             break;
         case '!alive':
             message.reply("As you can see I am alive and well. So tell me what brings you to summon me");
@@ -63,7 +88,7 @@ client.on('message', async message => {
             break;
 
         case '!meme':
-            const memeImg = await memes.random()
+            const memeImg = await memes.fromReddit("en")
             const media = await MessageMedia.fromUrl(memeImg.image);
             client.sendMessage(message.from, message.reply(media), { caption: memeImg.image })
             break;
@@ -71,7 +96,9 @@ client.on('message', async message => {
         case '!delete':
             message.reply("under development")
             break;
-
+        case `!ai ${match} `:
+            message.reply(" ")
+            break;
         case '!quote':
             const apiData = await fetch('https://type.fit/api/quotes')
             const JsonData = await apiData.json();
@@ -91,9 +118,25 @@ client.on('message', async message => {
                 message.reply('This command can only be used in a group!');
             }
 
-        break;
-        default:
-            message.reply("Screw you use !help before sending weird commands you nerd 🤓")
+            break;
+
+        case '!everyone':
+            const textmsg = await message.getChat();
+
+            let text = "";
+            let mentions = [];
+
+            for (let participant of textmsg.participants) {
+                const contact = await client.getContactById(participant.id._serialized);
+                mentions.push(contact);
+                text += `@${participant.id.user} `;
+            }
+
+            await textmsg.sendMessage(text, { mentions });
+            break;
+        case '!source':
+        case '!sauce':
+            message.reply(`Here is a link to my repository do give it a star\n\nhttps://github.com/ShivaBhattacharjee/Griffith-WhatsappBot`)
             break;
     }
 });
