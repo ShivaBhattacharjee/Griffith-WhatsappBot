@@ -4,8 +4,8 @@
   "description": "This is whatsapp bot built using whatsapp webjs and idk some other modules will update when i see fit ",
   "main": "index.js",
   "scripts": {
-       "start": "node index.js",
-        "dev": "nodemon index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +16,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mime-types": "^2.1.35",
+    "mongoose": "^7.0.3",
     "nodemon": "^2.0.22",
     "openai": "^3.2.1",
     "qrcode-terminal": "^0.12.0",
