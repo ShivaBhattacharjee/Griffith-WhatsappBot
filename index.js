@@ -33,7 +33,7 @@ mongoose.connect(process.env.MONGODB_URI).then(() => {
                 model: "text-davinci-003",
                 prompt: message,
                 temperature: 0.5,
-                max_tokens: 60,
+                max_tokens: 200,
                 top_p: 0.3,
                 frequency_penalty: 0.5,
                 presence_penalty: 0,
@@ -101,14 +101,17 @@ mongoose.connect(process.env.MONGODB_URI).then(() => {
             case '!delete':
                 message.reply("under development")
                 break;
+
             case `!ai ${match} `:
                 message.reply(" ")
                 break;
+
             case '!quote':
                 const apiData = await fetch('https://type.fit/api/quotes')
                 const JsonData = await apiData.json();
                 message.reply(`*${JsonData[Math.floor(Math.random() * JsonData.length)].text}*`)
                 break;
+
             case '!info':
                 let info = client.info;
                 client.sendMessage(message.from, `*Connection info*\nBot name: ${info.pushname}
@@ -148,10 +151,3 @@ mongoose.connect(process.env.MONGODB_URI).then(() => {
 
     client.initialize();
 });
- 
-
-
-
-
-
-
