@@ -8,7 +8,7 @@
   <h3 align="center">Griffith-WhatsappBot</h3>
 
   <p align="center">
-    A go to platform to stream/download your favorite anime
+    A WhatsApp bot with less but useful feature
     <br/>
     <br/>
     <br/>
