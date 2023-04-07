@@ -55,7 +55,7 @@ Griffith is built using javascript
 
 <a href="https://platform.openai.com/account/api-keys">OpenAi</a> is a research laboratory based in San Francisco, California. It was founded in December 2015 with the goal of conducting research in the field of artificial intelligence (AI) and developing technologies that benefit humanity. OpenAI focuses on developing AI technologies that are safe, beneficial, and widely accessible.
 
-<a href="https://cloud.mongodb.com/"></a>MongoDB is a cross-platform document-oriented database program. Classified as a NoSQL database program, MongoDB uses JSON-like documents with schema. MongoDB is developed by MongoDB Inc. and is free and open-source, published under a combination of the GNU Aff
+<a href="https://cloud.mongodb.com/"><MongoDB</a> is a cross-platform document-oriented database program. Classified as a NoSQL database program, MongoDB uses JSON-like documents with schema. MongoDB is developed by MongoDB Inc. and is free and open-source
 
 <a href="https://nodejs.org/en/download/">NodeJs</a> is a JavaScript runtime built on Chrome's V8 JavaScript engine. It allows developers to execute JavaScript code outside of a web browser, making it possible to create server-side applications with JavaScript. Node.js is fast, lightweight, and scalable, making it popular for building modern web applications.
 
