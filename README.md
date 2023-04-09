@@ -37,7 +37,7 @@
 <img src="https://user-images.githubusercontent.com/95211406/230340537-c2ae6ad3-e5fd-438e-afea-5bde3b952e21.png" max-height="1020px" width="1080"/>
 
 
-Griffith is a WhatsApp chat bot built using JavaScript that helps you stay organized and on top of your tasks. With Griffith, you can easily create to-do lists, set reminders, and get notifications when tasks are due. Griffith also helps you manage your time by providing helpful tips and
+Griffith is a WhatsApp chat bot built using JavaScript that helps you stay organized
 
 ## Built With
 
