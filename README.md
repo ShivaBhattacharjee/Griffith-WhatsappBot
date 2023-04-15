@@ -1,11 +1,5 @@
-<p align="center">
-  <a href="https://github.com/ShivaBhattacharjee/AnimeTrix">
-    <img src="https://user-images.githubusercontent.com/95211406/230342734-1424e78e-1821-46c0-a28f-745683524ce7.gif" alt="Logo" width="240px" height="200px">
-  </a>
-<br/>
 
-  
-  <h3 align="center">Griffith-WhatsappBot</h3>
+   <h3 align="center">Griffith-WhatsappBot</h3>
 
   <p align="center">
     A WhatsApp bot with less but useful feature
